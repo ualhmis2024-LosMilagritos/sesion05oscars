@@ -12,13 +12,6 @@ public class PremiosCineApp {
 		gestorPremios.crearPremio("Mejor Actriz");
 		// Añadir más premios si es necesario
 
-		// Crear premios
-        gestorPremios.crearPremio("Mejor Película");
-        gestorPremios.crearPremio("Mejor Director");
-        gestorPremios.crearPremio("Mejor Actor");
-        gestorPremios.crearPremio("Mejor Actriz");
-        // Añadir más premios si es necesario
-
         // Crear películas, actores, actrices y directores
         Director director1 = new Director("Christopher Nolan", "Masculino", "30/07/1970");
         Actor actor1 = new Actor("Leonardo DiCaprio", "Masculino", "11/11/1974");
