@@ -8,13 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PeliculaTest {
-    Pelicula pelicula = new Pelicula("Pelicula test",
-            new Director("Peter Jackson","Hombre","31/10/1961"));
+    Pelicula pelicula = new Pelicula("Pelicula test", new Director("Peter Jackson","Hombre","31/10/1961"));
 
     @Test
     void getDirector(){
-
-
         Director director = new Director("Peter Jackson","Hombre","31/10/1961");
 
         assertEquals(director,pelicula.getDirector());
@@ -26,7 +23,8 @@ public class PeliculaTest {
         Actor actor = new Actor("Josh Hutcherson","Hombre"," 12/10/1992");
         pelicula.setActrizProtagonista(actriz);
         pelicula.setActorProtagonista(actor);
-
+        
+        assertEquals(actor,pelicula.getActorProtagonista());
         assertEquals(actriz,pelicula.getActrizProtagonista());
     }
 
