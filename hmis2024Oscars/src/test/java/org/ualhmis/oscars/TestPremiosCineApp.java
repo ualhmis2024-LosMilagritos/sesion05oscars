@@ -84,5 +84,4 @@ class TestPremiosCineApp {
 	        String actualOutput = outputStream.toString().trim(); // Limpiar espacios en blanco alrededor
 	        assertTrue(actualOutput.contains(expectedOutput), "El mensaje de error no coincide. Actual: " + actualOutput);
 	    }
-
 }
