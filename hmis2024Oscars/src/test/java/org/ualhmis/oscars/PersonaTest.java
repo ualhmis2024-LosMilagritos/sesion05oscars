@@ -82,12 +82,4 @@ class PersonaTest {
 		assertEquals(null, aoa1.getNombre());
 		assertEquals(null, d1.getNombre());
 	}
-
-	
-	@Test
-	void testPerson() {
-		
-	}
-	
-
 }
