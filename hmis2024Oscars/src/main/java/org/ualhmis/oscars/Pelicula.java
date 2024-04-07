@@ -7,61 +7,59 @@ import java.util.Map;
 
 //Clase Pelicula
 class Pelicula {
-  private String titulo;
-  private Director director;
-  private Actor actorProtagonista;
-  private Actriz actrizProtagonista;
-  private List<Actor> actoresSecundarios;
-  private List<Actriz> actricesSecundarias;
+	private String titulo;
+	private Director director;
+	private Actor actorProtagonista;
+	private Actriz actrizProtagonista;
+	private List<Actor> actoresSecundarios;
+	private List<Actriz> actricesSecundarias;
 
-  public Pelicula(String titulo, Director director) {
-      this.titulo = titulo;
-      this.director = director;
-      this.actoresSecundarios = new ArrayList<>();
-      this.actricesSecundarias = new ArrayList<>();
-  }
+	public Pelicula(String titulo, Director director) {
+		this.titulo = titulo;
+		this.director = director;
+		this.actoresSecundarios = new ArrayList<>();
+		this.actricesSecundarias = new ArrayList<>();
+	}
 
-  public String getTitulo() {
-      return titulo;
-  }
+	public String getTitulo() {
+		return titulo;
+	}
 
-  public Director getDirector() {
-      return director;
-  }
+	public Director getDirector() {
+		return director;
+	}
 
-  
+	public Actor getActorProtagonista() {
+		return actorProtagonista;
+	}
 
-  public Actor getActorProtagonista() {
-	return actorProtagonista;
-}
+	public void setActorProtagonista(Actor actorProtagonista) {
+		this.actorProtagonista = actorProtagonista;
+	}
 
-public void setActorProtagonista(Actor actorProtagonista) {
-	this.actorProtagonista = actorProtagonista;
-}
+	public Actriz getActrizProtagonista() {
+		return actrizProtagonista;
+	}
 
-public Actriz getActrizProtagonista() {
-	return actrizProtagonista;
-}
+	public void setActrizProtagonista(Actriz actrizProtagonista) {
+		this.actrizProtagonista = actrizProtagonista;
+	}
 
-public void setActrizProtagonista(Actriz actrizProtagonista) {
-	this.actrizProtagonista = actrizProtagonista;
-}
+	public List<Actor> getActoresSecundarios() {
+		return actoresSecundarios;
+	}
 
-public List<Actor> getActoresSecundarios() {
-      return actoresSecundarios;
-  }
+	public List<Actriz> getActricesSecundarias() {
+		return actricesSecundarias;
+	}
 
-  public List<Actriz> getActricesSecundarias() {
-      return actricesSecundarias;
-  }
+	public void addActorSecundario(Actor actorSecundario) {
+		actoresSecundarios.add(actorSecundario);
+	}
 
-  public void addActorSecundario(Actor actorSecundario) {
-      actoresSecundarios.add(actorSecundario);
-  }
-
-  public void addActrizSecundaria(Actriz actrizSecundaria) {
-      actricesSecundarias.add(actrizSecundaria);
-  }
+	public void addActrizSecundaria(Actriz actrizSecundaria) {
+		actricesSecundarias.add(actrizSecundaria);
+	}
 }
 
 
