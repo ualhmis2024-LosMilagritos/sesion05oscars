@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hmis2024Oscars</groupId>
 	<artifactId>hmis2024Oscars</artifactId>
@@ -12,7 +12,7 @@
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
-		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<testSourceDirectory>test/main/java</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -37,12 +37,12 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.8</version>
 				<executions>
-					<execution>
-						<id>prepare-agent</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
+				<execution>
+					<id>prepare-agent</id>
+					<goals>
+						<goal>prepare-agent</goal>
+					</goals>
+				</execution>
 					<!-- attached to Maven test phase -->
 					<execution>
 						<id>jacoco-report</id>
@@ -77,42 +77,43 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.5.0</version>
-				<configuration>
-					<!-- <reportOutputDirectory> ${project.reporting.outputDirectory}/../../docs 
-						</reportOutputDirectory> -->
-					<doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
-					<docletArtifact>
-						<groupId>nl.talsmasoftware</groupId>
-						<artifactId>umldoclet</artifactId>
-						<version>2.1.0</version>
-					</docletArtifact>
-					<additionalOptions>
-						<!-- -umlImageFormat (svg | svg_img | png | eps | none) -->
-						<!-- <additionalOption>-umlImageFormat svg_img,png</additionalOption> -->
-						<additionalOption>-umlImageFormat svg_img</additionalOption>
-						<additionalOption>-private</additionalOption>
-						<!-- <additionalOption>-createPumlFiles</additionalOption> -->
-						<additionalOption>-umlExcludedTypeReferences</additionalOption> <!-- añade metodos toString() y equals() -->
-						<!-- <additionalOption>-umlJavaBeanPropertiesAsFields</additionalOption> -->
-						<!-- <additionalOption>-umlCustomDirective "skinparam classBackgroundColor 
-							LightYellow"</additionalOption> -->
-					</additionalOptions>
-				</configuration>
-			</plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.6.2</version>
+        <configuration> 
+          <!-- <reportOutputDirectory>
+		  	${project.reporting.outputDirectory}/../../docs
+		  </reportOutputDirectory> -->
+          <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
+          <docletArtifact>
+            <groupId>nl.talsmasoftware</groupId>
+            <artifactId>umldoclet</artifactId>
+            <version>2.1.0</version>
+          </docletArtifact>
+          <additionalOptions>
+            <!-- -umlImageFormat (svg | svg_img | png | eps | none) -->
+			<!-- <additionalOption>-umlImageFormat svg_img,png</additionalOption> -->
+			<additionalOption>-umlImageFormat svg_img</additionalOption>
+			<additionalOption>-private</additionalOption>
+			<!-- <additionalOption>-createPumlFiles</additionalOption> -->
+			<additionalOption>-umlExcludedTypeReferences</additionalOption> <!-- añade metodos toString() y equals() -->
+			<!-- <additionalOption>-umlJavaBeanPropertiesAsFields</additionalOption> -->
+			<!-- <additionalOption>-umlCustomDirective "skinparam classBackgroundColor
+					LightYellow"</additionalOption> -->
+          </additionalOptions>
+        </configuration>
+      </plugin>
 
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>4.0.0-M7</version>
-				<configuration>
-					<locales>es,en</locales>
-				</configuration>
-			</plugin>
-
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-site-plugin</artifactId>
+		<version>4.0.0-M7</version>
+		<configuration>
+			<locales>es,en</locales>
+		</configuration>
+	</plugin>
+	
 
 		</plugins>
 	</build>
@@ -121,40 +122,40 @@
 		<plugins>
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>4.0.0-M7</version>
-				<configuration>
-					<locales>es,en</locales>
-				</configuration>
-			</plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-site-plugin</artifactId>
+			<version>4.0.0-M7</version>
+			<configuration>
+				<locales>es,en</locales>
+			</configuration>
+		</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.1.1</version>
-			</plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.1.1</version>
+        </plugin>
 
+		<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>3.3.0</version>
+        </plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>3.3.0</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.20.0</version>
-				<configuration>
-					<linkXref>true</linkXref>
-					<sourceEncoding>utf-8</sourceEncoding>
-					<minimumTokens>100</minimumTokens>
-					<targetJdk>1.8</targetJdk>
-					<skipEmptyReport>false</skipEmptyReport>
-					<rulesets>
-						<ruleset>/rulesets/java/braces.xml</ruleset>
-						<ruleset>/rulesets/java/naming.xml</ruleset>
-					</rulesets>
-				</configuration>
-			</plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-pmd-plugin</artifactId>
+	<version>3.20.0</version>
+	<configuration>
+		<linkXref>true</linkXref>
+		<sourceEncoding>utf-8</sourceEncoding>
+		<minimumTokens>100</minimumTokens>
+		<targetJdk>1.8</targetJdk>
+		<skipEmptyReport>false</skipEmptyReport>
+		<rulesets>
+			<ruleset>/rulesets/java/braces.xml</ruleset>
+			<ruleset>/rulesets/java/naming.xml</ruleset>
+		</rulesets>
+	</configuration>
+</plugin>
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -171,7 +172,7 @@
 				<version>3.1.1</version>
 			</plugin>
 
-			<plugin>
+ 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
 				<version>6.1.5</version>
@@ -180,7 +181,7 @@
 					<formats>
 						<format>HTML</format>
 						<format>XML</format>
-					</formats>
+					</formats> 
 				</configuration>
 				<reportSets>
 					<reportSet>
@@ -193,83 +194,35 @@
 
 
 			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.7.3.4</version>
-				<configuration>
-					<effort>Max</effort>
-					<threshold>Low</threshold>
-					<failOnError>true</failOnError>
-					<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
-					<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
-					<FindBugsFilter>
-						<Match>
-							<Bug
-								category="SECURITY,MALICIOUS_CODE,CORRECTNESS,BAD_PRACTICE " />
-						</Match>
-					</FindBugsFilter>
-					<plugins>
-						<plugin>
-							<groupId>com.h3xstream.findsecbugs</groupId>
-							<artifactId>findsecbugs-plugin</artifactId>
-							<version>1.12.0</version>
-						</plugin>
-					</plugins>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.5.0</version>
-				<configuration>
-					<show>private</show>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.5.0</version>
-				<configuration>
-					<!-- <reportOutputDirectory> ${project.reporting.outputDirectory}/../../docs 
-						</reportOutputDirectory> -->
-					<doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
-					<docletArtifact>
-						<groupId>nl.talsmasoftware</groupId>
-						<artifactId>umldoclet</artifactId>
-						<version>2.1.0</version>
-					</docletArtifact>
-					<additionalOptions>
-						<!-- -umlImageFormat (svg | svg_img | png | eps | none) -->
-						<!-- <additionalOption>-umlImageFormat svg_img,png</additionalOption> -->
-						<additionalOption>-umlImageFormat svg_img</additionalOption>
-						<additionalOption>-private</additionalOption>
-						<!-- <additionalOption>-createPumlFiles</additionalOption> -->
-						<additionalOption>-umlExcludedTypeReferences</additionalOption> <!-- añade metodos toString() y equals() -->
-						<!-- <additionalOption>-umlJavaBeanPropertiesAsFields</additionalOption> -->
-						<!-- <additionalOption>-umlCustomDirective "skinparam classBackgroundColor 
-							LightYellow"</additionalOption> -->
-					</additionalOptions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.owasp</groupId>
-				<artifactId>dependency-check-maven</artifactId>
-				<version>8.2.1</version>
-				<configuration>
-					<skipTestScope>false</skipTestScope>
-					<formats>
-						<format>HTML</format>
-						<format>XML</format>
-					</formats>
-				</configuration>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>aggregate</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
+		<groupId>com.github.spotbugs</groupId>
+		<artifactId>spotbugs-maven-plugin</artifactId>
+		<version>4.7.3.4</version>
+		<configuration>
+			<effort>Max</effort>
+			<threshold>Low</threshold>
+			<failOnError>true</failOnError>
+			<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
+			<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
+			<FindBugsFilter>
+    <Match>
+        <Bug category="SECURITY,MALICIOUS_CODE,CORRECTNESS,BAD_PRACTICE "/>
+    </Match>
+</FindBugsFilter>
+			<plugins>
+				<plugin>
+					<groupId>com.h3xstream.findsecbugs</groupId>
+					<artifactId>findsecbugs-plugin</artifactId>
+					<version>1.12.0</version>
+				</plugin>
+			</plugins>
+		</configuration>
+	</plugin>
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-javadoc-plugin</artifactId>
+		<version>3.5.0</version>
+	</plugin>
+
 		</plugins>
 	</reporting>
 
@@ -295,69 +248,42 @@
 			<version>5.10.0</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
-		<dependency>
-			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-runner</artifactId>
-			<version>1.7.1</version>
-			<scope>test</scope>
-		</dependency>
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-runner -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-runner</artifactId>
+      <version>1.7.1</version>
+      <scope>test</scope>
+    </dependency>
 
-		<!-- Example of vulnerable dependency -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
+   	<!-- Examples of vulnerable dependencies -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+		<scope>test</scope>
+	</dependency>
 
-		<!-- Example of vulnerable dependency -->
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-			<version>4.0</version>
-		</dependency>
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-collections4</artifactId>
+		<version>4.0</version>
+	</dependency>
 
-		<!-- https://mvnrepository.com/artifact/nl.talsmasoftware/umldoclet -->
-		<dependency>
-			<groupId>nl.talsmasoftware</groupId>
-			<artifactId>umldoclet</artifactId>
-			<version>2.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/nl.talsmasoftware/umldoclet -->
-		<dependency>
-			<groupId>nl.talsmasoftware</groupId>
-			<artifactId>umldoclet</artifactId>
-			<version>2.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- Examples of vulnerable dependencies -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-collections4</artifactId>
-			<version>4.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-collections</groupId>
-			<artifactId>commons-collections</artifactId>
-			<version>3.2.2</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.15.0</version>
-		</dependency>
-	</dependencies>
+	<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+	<dependency>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j-core</artifactId>
+		<version>2.15.0</version>
+	</dependency>
+	
+    <!-- https://mvnrepository.com/artifact/nl.talsmasoftware/umldoclet -->
+    <dependency>
+      <groupId>nl.talsmasoftware</groupId>
+      <artifactId>umldoclet</artifactId>
+      <version>2.1.2</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    </dependencies>
 </project>
