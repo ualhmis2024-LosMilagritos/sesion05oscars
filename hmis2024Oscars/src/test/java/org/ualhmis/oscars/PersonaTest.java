@@ -8,78 +8,84 @@ class PersonaTest {
 
 	@Test
 	void testEqualsObject() {
-		Persona p1 = new Persona ("Pepe", "h", "01/01/2000");
-		Persona p2 = new Persona ("Pepe", "h", "01/01/2000");
+		Persona p1 = new Persona("Lucia", "f", "02/02/1990");
+		Persona p2 = new Persona("Lucia", "f", "02/02/1990");
 		Persona p3 = p1; 
 		Persona p4 = null; 
-		Director d1 = new Director ("Dire", "m", "01/01/2000");
-		Pelicula peli1 = new Pelicula("Maven mola !!!", d1);
-		
-		assertTrue(p1.equals(p2));
-		assertTrue(p1.equals(p3));
+		Persona p5 = new Persona(null, null, null);
+		Persona p6 = new Persona("Carlos", "m", "15/07/1985");
+		Persona p7 = new Persona("Paula", null, null);
+		Persona p8 = new Persona("Paula", "f", null);
+		Persona p9 = new Persona(null, "f", "15/07/1985");
+		Persona p10 = new Persona(null, "f", "15/07/1985");
+		Persona p11 = new Persona("Manuel", "m", "02/02/1990");
+		Persona p12 = new Persona("Manuel", null, "02/02/1990");
+		Director d1 = new Director("Director", "m", "02/02/1990");
+		Pelicula peli1 = new Pelicula("Pelicula1", d1);
+		Persona p13 = new Persona("Paula", "m", null);
+		Persona p14 = new Persona("Paula", null, null);
+		Persona p15 = new Persona("Paula", null, "15/07/1985");
+		Persona p16 = new Persona("Paula", "m", "15/07/1985");
+		Persona p17 = new Persona("Paula", null, "15/07/1985");
+		Persona p18 = new Persona("Paula", null, "15/07/1985");
+
+		assertFalse(p1.equals(p11));
 		assertFalse(p1.equals(p4));
+		assertFalse(p8.equals(p1));
+		assertFalse(p11.equals(p12));
+		assertFalse(p1.equals(p8));
+		assertFalse(p6.equals(p1));
+		
+		assertFalse(p1.equals(p9));
+		assertFalse(p5.equals(p1));
+		assertTrue(p1.equals(p2));
+		assertFalse(p5.equals(p8));
+		assertFalse(p7.equals(p1));
+		assertFalse(p1.equals(p7));
+		assertFalse(p1.equals(p5));
+		
+		assertFalse(p16.equals(p15)); // Caso inverso
+		assertFalse(p5.equals(p7));
+		assertFalse(p12.equals(p11));
+		
+		assertFalse(p15.equals(p16)); // Sexo es null en uno y no en otro
+		assertFalse(p14.equals(p13)); // Caso inverso
+		assertFalse(p13.equals(p14)); // Caso en el que sexo de uno es null y el otro no
+		
+		assertFalse(p9.equals(p1));
+		assertTrue(p9.equals(p10));
+		assertFalse(p1.equals(peli1));
+		assertFalse(p6.equals(p1));
 		assertEquals(false, p1.equals(p4), "El parametro no es null.");
 		
-		assertFalse (p1.equals(peli1));
-		
+		assertTrue(p1.equals(p3));
+		assertTrue(p17.equals(p18)); // Ambos sexos son null
 	}
 	
 	@Test
-	void testEqualsPersona() {
-		Persona p1 = new Persona (null, null, null);
-		Persona p2 = new Persona ("Pepe", "h", "01/01/2000");
-		Persona p3 = new Persona ("Laura", "m", null);
-		Persona p4 = new Persona (null, "m", null);
-		
-		assertFalse(p1.equals(p2));
-		assertFalse(p2.equals(p1));
-		
-		assertFalse(p1.equals(p3));
-		assertFalse(p3.equals(p1));
-		
-		assertFalse(p1.equals(p4));
-		assertFalse(p4.equals(p1));
+	void testGetNombre() {
+		Persona p1 = new Persona("Lucia", "f", "02/02/1990");
+		assertEquals(p1.getNombre(), "Lucia");
 	}
 	
 	@Test
-	void testHashCode() {
-		 // Crear objetos con mismos valores deben tener el mismo hashCode
-        Persona persona1 = new Persona("Juan", "M", "01-01-1990");
-        Persona persona2 = new Persona("Juan", "M", "01-01-1990");
-        
-        assertEquals(persona1.hashCode(), persona2.hashCode());
-
-        // Crear objetos con valores diferentes deben tener hashCode diferente
-        Persona persona3 = new Persona("Maria", "F", "15-03-1985");
-        assertNotEquals(persona1.hashCode(), persona3.hashCode());
-
-        // Crear objetos con campos nulos deben tener hashCode válido
-        Persona persona4 = new Persona(null, null, null);
-        Persona persona5 = new Persona(null,  null, null);
-        
-        assertEquals(persona4.hashCode(), persona5.hashCode());
+	void testGetSexo() {
+		Persona p1 = new Persona("Lucia", "f", "02/02/1990");
+		assertEquals(p1.getSexo(), "f");
 	}
 	
 	@Test
-	void testPersonas() {
-		Persona p1 = new Persona ("Pepe", "h", "01/01/2000");
-		assertEquals("Pepe", p1.getNombre());
-		assertEquals("h", p1.getSexo());
-		assertEquals("01/01/2000",p1.getFechaNacimiento());
+	void testGetNacimiento() {
+		Persona p1 = new Persona("Lucia", "f", "02/02/1990");
+		assertEquals(p1.getFechaNacimiento(), "02/02/1990");
 	}
 	
-	
-	
 	@Test
-	void testPersonasCine() {
-		Actriz actriz1 = new Actriz(null,null,null);
-		Actor actor1 = new Actor(null,null,null);
-		ActorOActriz aoa1 = new ActorOActriz(null,null,null);
-		Director d1 = new Director(null,null,null);
-		
-		assertEquals(null, actriz1.getNombre());
-		assertEquals(null, actor1.getNombre());
-		assertEquals(null, aoa1.getNombre());
-		assertEquals(null, d1.getNombre());
+	void testHash() {
+		Persona p1 = new Persona("Lucia", "f", "02/02/1990");
+		Persona p2 = new Persona("Lucia", "f", "02/02/1990");
+		Persona p3 = new Persona(null, null, null);
+		assertEquals(p1.hashCode(), p2.hashCode());
+		assertNotEquals(p1.hashCode(), p3.hashCode());
 	}
 }
