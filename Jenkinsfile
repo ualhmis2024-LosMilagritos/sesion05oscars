@@ -51,15 +51,15 @@ pipeline {
 	    sh "mvn clean compile spotbugs:spotbugs findbugs:findbugs"
       }
       post {
-        success {
-	  sh "mvn -f hmis2024Oscars/pom.xml site"
-          dependencyCheckPublisher pattern: '**/target/site/dependency-check-report.xml'
-          recordIssues enabledForFailure: true, tool: checkStyle()
-          recordIssues enabledForFailure: true, tool: pmdParser()
-          recordIssues enabledForFailure: true, tool: cpd()
-          recordIssues enabledForFailure: true, tool: findBugs(pattern: '**/target/findbugsXml.xml')
-          recordIssues enabledForFailure: true, tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
-        }
+        dir('hmis2024Oscars') {
+                sh "mvn site"
+                dependencyCheckPublisher pattern: '**/target/site/dependency-check-report.xml'
+                recordIssues enabledForFailure: true, tool: checkStyle()
+                recordIssues enabledForFailure: true, tool: pmdParser()
+                recordIssues enabledForFailure: true, tool: cpd()
+                recordIssues enabledForFailure: true, tool: findBugs(pattern: '**/target/findbugsXml.xml')
+                recordIssues enabledForFailure: true, tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
+            }
       }
     }
   }
