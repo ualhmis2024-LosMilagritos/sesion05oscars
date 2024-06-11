@@ -48,8 +48,8 @@ pipeline {
      stage ('Analysis') {
       steps {
 	    // Warnings next generation plugin required
-	    sh "mvn -f hmis2024Oscars/spotbugs:spotbugs"
-	    sh "mvn -f hmis2024Oscars/findbugs:findbugs"
+	    sh "mvn -f hmis2024Oscars/target/spotbugs:spotbugs"
+	    sh "mvn -f hmis2024Oscars/target/findbugs:findbugs"
       }
       post {
         success {
