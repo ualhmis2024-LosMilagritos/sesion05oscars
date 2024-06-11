@@ -46,20 +46,20 @@ pipeline {
       }
     }
      stage ('Analysis') {
-      steps {
-	    // Warnings next generation plugin required
-	      sh "mvn -f sesion07Maven/pom.xml site"
-	    sh "mvn clean compile spotbugs:spotbugs findbugs:findbugs"
-      }
-      post {
-               
-                dependencyCheckPublisher pattern: '**/target/site/dependency-check-report.xml'
-                recordIssues enabledForFailure: true, tool: checkStyle()
-                recordIssues enabledForFailure: true, tool: pmdParser()
-                recordIssues enabledForFailure: true, tool: cpd()
-                recordIssues enabledForFailure: true, tool: findBugs(pattern: '**/target/findbugsXml.xml')
-                recordIssues enabledForFailure: true, tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
-      }
+    steps {
+        sh "mvn -f sesion07Maven/pom.xml site"
+        sh "mvn clean compile spotbugs:spotbugs findbugs:findbugs"
     }
+    post {
+        success {
+            dependencyCheckPublisher pattern: '**/target/site/dependency-check-report.xml'
+            recordIssues enabledForFailure: true, tool: checkStyle()
+            recordIssues enabledForFailure: true, tool: pmdParser()
+            recordIssues enabledForFailure: true, tool: cpd()
+            recordIssues enabledForFailure: true, tool: findBugs(pattern: '**/target/findbugsXml.xml')
+            recordIssues enabledForFailure: true, tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
+        }
+    }
+}
   }
 }
