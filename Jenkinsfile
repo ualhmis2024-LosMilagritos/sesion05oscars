@@ -48,13 +48,12 @@ pipeline {
      stage ('Analysis') {
       steps {
 	    // Warnings next generation plugin required
-	    sh "mvn -f hmis2024Oscars/pom.xml site"
 	    sh "mvn spotbugs:spotbugs"
 	    sh "mvn findbugs:findbugs"
       }
       post {
         success {
-	  sh "mvn hmis2024Oscars/pom.xml site"
+	  sh "mvn -f hmis2024Oscars/pom.xml site"
           dependencyCheckPublisher pattern: '**/target/site/dependency-check-report.xml'
           recordIssues enabledForFailure: true, tool: checkStyle()
           recordIssues enabledForFailure: true, tool: pmdParser()
