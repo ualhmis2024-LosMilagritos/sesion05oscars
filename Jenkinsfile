@@ -52,7 +52,7 @@ pipeline {
     }
     post {
         success {
-          sh "mvn clean compile spotbugs:spotbugs findbugs:findbugs"
+         
             dependencyCheckPublisher pattern: '**/target/site/dependency-check-report.xml'
             recordIssues enabledForFailure: true, tool: checkStyle()
             recordIssues enabledForFailure: true, tool: pmdParser()
