@@ -49,15 +49,18 @@ pipeline {
       steps {
 	    // Warnings next generation plugin required
 	    sh "mvn -f hmis2024Oscars/pom.xml site"
+	    sh "mvn spotbugs:spotbugs"
+	    sh "mvn findbugs:findbugs"
       }
       post {
         success {
+	  sh "mvn site"
           dependencyCheckPublisher pattern: '**/target/site/dependency-check-report.xml'
           recordIssues enabledForFailure: true, tool: checkStyle()
           recordIssues enabledForFailure: true, tool: pmdParser()
           recordIssues enabledForFailure: true, tool: cpd()
-          recordIssues enabledForFailure: true, tool: findBugs()
-          recordIssues enabledForFailure: true, tool: spotBugs()
+          recordIssues enabledForFailure: true, tool: findBugs(pattern: '**/target/findbugsXml.xml')
+          recordIssues enabledForFailure: true, tool: spotBugs(pattern: '**/target/spotbugsXml.xml')
         }
       }
     }
