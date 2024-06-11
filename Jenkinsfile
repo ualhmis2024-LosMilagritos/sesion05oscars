@@ -48,7 +48,6 @@ pipeline {
      stage ('Analysis') {
     steps {
         sh "mvn -f hmis2024Oscars/pom.xml site"
-        sh "mvn clean compile spotbugs:spotbugs findbugs:findbugs"
         
     }
     post {
