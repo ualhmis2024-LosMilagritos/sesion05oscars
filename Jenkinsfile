@@ -48,8 +48,7 @@ pipeline {
      stage ('Analysis') {
       steps {
 	    // Warnings next generation plugin required
-	    sh "mvn spotbugs:spotbugs"
-        sh "mvn findbugs:findbugs"
+	    sh "mvn clean compile spotbugs:spotbugs findbugs:findbugs"
       }
       post {
         success {
